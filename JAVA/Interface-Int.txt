@@ -1,0 +1,92 @@
+interface Vehicle 
+{ 
+   void tyres(); 
+   void speed(); 
+   void cost(); 
+   void brand(); 
+} 
+
+class Bicycle implements Vehicle
+{ 
+    public void tyres() 
+   { 
+       System.out.println("Bicycle has two tyres."); 
+    } 
+    public void speed() 
+    { 
+        System.out.println("Its speed is less compared to bike and car."); 
+     } 
+     public void cost()  
+    { 
+        System.out.println("Its cheaper than bikes and cars."); 
+     } 
+     public void brand() 
+     { 
+        System.out.println("Hero is a famous brand of bicycles."); 
+        System.out.println(); 
+     } 
+} 
+class Bike implements Vehicle
+{ 
+   public void tyres() 
+   { 
+       System.out.println("Bikes also have two tyres."); 
+    } 
+    public void speed() 
+    { 
+       System.out.println("Its speed is less compared to car but more than bicycle.");  
+     } 
+    public void cost() 
+    { 
+        System.out.println("Its more expensive than bicycle but cheaper than car."); 
+     } 
+     public void brand() 
+     { 
+          System.out.println("Yamaha is a famous brand of bike."); System.out.println(); 
+      }
+
+} 
+
+class Car implements Vehicle
+{
+   public void tyres() 
+  { 
+     System.out.println("Cars have four tyres."); 
+  } 
+   public void speed() 
+  { 
+      System.out.println("Its faster than bicycle and bike."); 
+   } 
+   public void cost() 
+   { 
+       System.out.println("Its most expensive amongst the three."); 
+    } 
+    public void brand() 
+   { 
+       System.out.println("Maruti Suzuki is a famous brand of car."); 
+       System.out.println(); 
+    } 
+} 
+
+class Int
+{ 
+    public static void main(String[] args) 
+    { 
+        Bicycle bicycle = new Bicycle(); 
+        bicycle.tyres(); 
+        bicycle.speed(); 
+        bicycle.cost(); 
+        bicycle.brand();  
+        Bike bike = new Bike(); 
+        bike.tyres(); 
+        bike.speed(); 
+        bike.cost(); 
+        bike.brand(); 
+        Car car = new Car(); 
+        car.tyres(); 
+        car.speed(); 
+        car.cost(); 
+        car.brand(); 
+     } 
+
+}

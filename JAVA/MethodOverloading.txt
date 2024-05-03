@@ -1,0 +1,51 @@
+class Book
+{ 
+	public static void main(String[] args) 
+	{ 
+		Book book = new Book(); 
+		book.display("How to win friends and influence people", "Dale Carnegie", 1936, 1, 550.0); 
+		Reference_Book ref = new Reference_Book(); 
+		ref.display("Applied Physics Part II", "I.A. Shaikh", 2000,2, 329.0);
+		Magazine mag = new Magazine(); 
+		mag.display("Vogue", "Anonymous", 2004, 5, 250.5); 
+	}
+	protected String bookName; 
+	protected String authorName; 
+	protected int publishedYear; 
+	protected int editionNo; 
+	protected double cost; 
+	public void display(String bookName, String authorName, int publishedYear, int editionNo, double cost) 
+	{ 
+		System.out.println("The name of book is " + bookName); 
+		System.out.println("The author of book is " + authorName); 
+		System.out.println("The year of publishing is " + publishedYear); 
+		System.out.println("The edition number is " + editionNo); 
+		System.out.println("The cost of book is " + cost); 
+	} 
+} 
+class Reference_Book extends Book
+{ 
+	public void display(String bookName, String authorName, int publishedYear, int editionNo, double cost) 
+	{ 
+		System.out.println(); 
+		System.out.println("This is a reference book"); 
+		System.out.println("The name of book is " + bookName); 
+		System.out.println("The author of book is " + authorName); 
+		System.out.println("The year of publishing is " + publishedYear); 
+		System.out.println("The edition number is " + editionNo); 
+		System.out.println("The cost of book is " + cost); 
+	} 
+} 
+class Magazine extends Book
+{ 
+	public void display(String bookName, String authorName, int publishedYear, int editionNo, double cost) 
+	{ 
+		System.out.println(); 
+		System.out.println("This is a magazine"); 
+		System.out.println("The name of book is " + bookName); 
+		System.out.println("The author of book is " + authorName); 
+		System.out.println("The year of publishing is " + publishedYear); 
+		System.out.println("The edition number is " + editionNo); 
+		System.out.println("The cost of book is " + cost); 
+	} 
+}

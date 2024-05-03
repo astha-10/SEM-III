@@ -1,0 +1,207 @@
+import javax.swing.*;
+import java.awt.event.*;
+public class WorkingNotepad implements ActionListener 
+{
+	JFrame f;
+	JMenuBar mb;
+	JMenu file,edit,help,view,format;
+	JMenuItem cut,copy,paste,selectAll,N,Nw,O,S,Sa,Ps,P,E,ww,font,sb,Z;
+	JTextArea ta;
+	WorkingNotepad()
+	{
+		f=new JFrame();
+		mb= new JMenuBar();
+		f.setJMenuBar(mb);
+		f.add(mb);
+		file=new JMenu("File");
+		edit=new JMenu("Edit");
+		help=new JMenu("Help");
+		format=new JMenu("Format");
+		view=new JMenu ("View");
+		mb.add(file);
+		mb.add(edit);
+		mb.add(help);
+		mb.add(format);
+		mb.add(view);
+		
+		{
+			//FILE OPTIONS
+		N=new JMenuItem("New");
+		Nw=new JMenuItem("New Window");
+		O=new JMenuItem("Open");
+		S=new JMenuItem("Save");
+		Sa=new JMenuItem("Save As");
+		Ps=new JMenuItem("Page Setup");
+		P=new JMenuItem("Print");
+		E=new JMenuItem("Exit");
+		file.add(N);
+		file.add(Nw);
+		file.add(O);
+		file.add(S);
+		file.add(Sa);
+		file.add(Ps);
+		file.add(P);
+		file.add(E);
+		}
+		
+		{
+			//FORMAT OPTIONS
+		ww = new JMenuItem("Word Wrap");
+		font= new JMenuItem("Font");
+		format.add(ww);
+		format.add(font);
+		}
+		
+		{
+			//VIEW OPTIONS
+		sb= new JMenuItem("Status Bar");
+		Z = new JMenuItem("Zoom");
+		view.add(Z);
+		view.add(sb);
+		}
+		
+		{
+			//EDIT OPTIONS
+		cut=new JMenuItem("Cut");
+		copy=new JMenuItem("Copy");
+		paste=new JMenuItem("Paste");
+		selectAll=new JMenuItem("Select All");
+		edit.add(cut);
+		edit.add(copy);
+		edit.add(paste);
+		edit.add(selectAll);
+		
+		cut.addActionListener(this);
+		copy.addActionListener(this);
+		paste.addActionListener(this);
+		selectAll.addActionListener(this);
+		}
+		ta=new JTextArea();
+		ta.setBounds(20,20,360,320);
+		f.add(ta);
+		
+		f.setLayout(null);
+		f.setSize(400,400);
+		f.setVisible(true);
+	}
+	public void actionPerformed(ActionEvent e)
+	{
+		if(e.getSource()==cut)
+			ta.cut();
+		if(e.getSource()==copy)
+			ta.copy();
+		if(e.getSource()==paste)
+			ta.paste();
+		if(e.getSource()==selectAll)
+			ta.selectAll();
+	}
+	public static void main(String[] args)
+	{
+		new WorkingNotepad();
+	}
+}
+		
+		import javax.swing.*;
+import java.awt.event.*;
+public class WorkingNotepad implements ActionListener 
+{
+	JFrame f;
+	JMenuBar mb;
+	JMenu file,edit,help,view,format;
+	JMenuItem cut,copy,paste,selectAll,N,Nw,O,S,Sa,Ps,P,E,ww,font,sb,Z;
+	JTextArea ta;
+	WorkingNotepad()
+	{
+		f=new JFrame();
+		mb= new JMenuBar();
+		f.setJMenuBar(mb);
+		f.add(mb);
+		file=new JMenu("File");
+		edit=new JMenu("Edit");
+		help=new JMenu("Help");
+		format=new JMenu("Format");
+		view=new JMenu ("View");
+		mb.add(file);
+		mb.add(edit);
+		mb.add(help);
+		mb.add(format);
+		mb.add(view);
+		
+		{
+			//FILE OPTIONS
+		N=new JMenuItem("New");
+		Nw=new JMenuItem("New Window");
+		O=new JMenuItem("Open");
+		S=new JMenuItem("Save");
+		Sa=new JMenuItem("Save As");
+		Ps=new JMenuItem("Page Setup");
+		P=new JMenuItem("Print");
+		E=new JMenuItem("Exit");
+		file.add(N);
+		file.add(Nw);
+		file.add(O);
+		file.add(S);
+		file.add(Sa);
+		file.add(Ps);
+		file.add(P);
+		file.add(E);
+		}
+		
+		{
+			//FORMAT OPTIONS
+		ww = new JMenuItem("Word Wrap");
+		font= new JMenuItem("Font");
+		format.add(ww);
+		format.add(font);
+		}
+		
+		{
+			//VIEW OPTIONS
+		sb= new JMenuItem("Status Bar");
+		Z = new JMenuItem("Zoom");
+		view.add(Z);
+		view.add(sb);
+		}
+		
+		{
+			//EDIT OPTIONS
+		cut=new JMenuItem("Cut");
+		copy=new JMenuItem("Copy");
+		paste=new JMenuItem("Paste");
+		selectAll=new JMenuItem("Select All");
+		edit.add(cut);
+		edit.add(copy);
+		edit.add(paste);
+		edit.add(selectAll);
+		
+		cut.addActionListener(this);
+		copy.addActionListener(this);
+		paste.addActionListener(this);
+		selectAll.addActionListener(this);
+		}
+		ta=new JTextArea();
+		ta.setBounds(20,20,360,320);
+		f.add(ta);
+		
+		f.setLayout(null);
+		f.setSize(400,400);
+		f.setVisible(true);
+	}
+	public void actionPerformed(ActionEvent e)
+	{
+		if(e.getSource()==cut)
+			ta.cut();
+		if(e.getSource()==copy)
+			ta.copy();
+		if(e.getSource()==paste)
+			ta.paste();
+		if(e.getSource()==selectAll)
+			ta.selectAll();
+	}
+	public static void main(String[] args)
+	{
+		new WorkingNotepad();
+	}
+}
+		
+		

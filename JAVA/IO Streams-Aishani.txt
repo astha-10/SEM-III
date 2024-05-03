@@ -1,0 +1,132 @@
+//METHID 1
+import java.util.Scanner;1st Method:
+
+public class TryCatchExample2
+
+{
+
+public static void main(String[] args)
+
+{
+
+try
+
+{
+
+int data= 50/0;
+
+System.out.println("rest of the code");
+
+}
+
+catch(ArithmeticException e)
+
+{
+
+System.out.println("I am catch block");
+
+System.out.println(e);
+
+}
+
+}
+
+}
+
+===================
+//METHOD2
+public class MultipleCatchBlock1
+
+{
+
+public static void main(String[] args)
+
+{
+
+try
+
+{
+
+int a[]=new int[5];
+
+a[10]=7;
+
+int b=4/0;
+
+}
+
+catch(ArithmeticException e)
+
+{
+
+System.out.println("ArithmeticException e");
+
+}
+
+catch(ArrayIndexOutOfBoundsException e)
+
+{
+
+System.out.println("ArrayIndexOutOfBoundsException occurs");
+
+}
+
+System.out.println("rest of the code");
+
+}
+=================
+import java.util.Scanner;
+
+public class TestThrows
+
+{
+
+public static void validdate(int age)
+
+{
+
+if(age<18)
+
+try
+
+{
+
+throw new ArithmeticException("Person is not eligible to vote.");
+
+}
+
+catch(ArithmeticException e)
+
+{
+
+System.out.println(e);
+
+}
+
+}
+
+public static void main(String[] args){
+
+System.out.println("Enter the value : ");
+
+Scanner sc = new Scanner(System.in);
+
+int n=sc.nextInt();
+
+validdate(n);
+
+System.out.println("Rest of the Code..");
+}
+}
+==========================
+1st Method: I am catch block 
+java.lang.ArithmeticException: / by zero
+
+2nd Method: ArrayIndexOutOfBoundsException occurs 
+rest of the code
+
+3rd Method: Enter the value : 12 
+java.lang.ArithmeticException: Person is not eligible to vote. 
+Rest of the Code.. 
+Enter the value : 21 
+Rest of the Code..

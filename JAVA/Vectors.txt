@@ -1,0 +1,168 @@
+//ADD() method import java.util.*; class vector1
+{
+public static void main(String[] arg)
+{
+Vector v = new Vector(); v.add(1);
+v.add(2); v.add("Java");
+v.add("is easy"); v.add(3);
+System.out.println("Vector is " + v);
+}
+}
+
+====================
+//addAll()
+import java.util.*; class vector2
+{
+public static void main(String[] arg)
+{
+ArrayList arr = new ArrayList(); arr.add(3);
+arr.add("Java");
+arr.add("is easy"); arr.add(4);
+Vector v = new Vector(); v.addAll(arr); System.out.println("vector v:" + v);
+}
+}
+
+=========================
+//CLEAR()
+import java.util.*; class vector3
+{
+public static void main(String[] arg)
+{
+Vector v = new Vector(); v.add(0, 1);
+v.add(1, 2);
+v.add(2, "geeks");
+v.add(3, "forGeeks");
+v.add(4, 3); System.out.println("Vector is: " + v); v.clear();
+System.out.println("after clearing: " + v);
+}
+}
+================================
+//CLONE()
+import java.util.*; class vector4
+{
+public static void main(String[] arg)
+{
+Vector v = new Vector(); Vector v_clone = new Vector(); v.add(0, 1);
+v.add(1, 2);
+v.add(2, "Java");
+v.add(3, "forExperts");
+v.add(4, 3);
+v_clone = (Vector)v.clone(); System.out.println("Clone of v: " + v_clone);
+}
+
+}
+============================
+// CONTAINS()
+import java.util.*; class vector5
+{
+public static void main(String[] arg)
+{
+Vector v = new Vector(); v.add(1);
+v.add(2); v.add("Java"); v.add("for Experts"); v.add(3);
+//checking
+if (v.contains("forExperts")) System.out.println("forExperts exists");
+}
+}
+
+============================
+//ensureCapacity() method import java.util.*;
+class vector6
+{
+public static void main(String[] arg)
+{
+Vector v = new Vector(); v.ensureCapacity(22);
+System.out.println("Minimum capacity: " + v.capacity());
+}
+}
+==============
+//indexOf() method 
+import java.util.*; class vector8
+{
+public static void main(String[] arg)
+{
+Vector v = new Vector(); v.add(1);
+v.add(2); v.add("Java");
+v.add("for beginers");
+v.add(4);
+System.out.println("index of Geeks is: " + v.indexOf("java"));
+}
+}
+=====================
+//isEmpty() method import java.util.*; class vector9
+{
+public static void main(String[] arg)
+{
+Vector v = new Vector(); v.add(1);
+v.add(2); v.add("Java"); v.add("for beginers"); v.add(4);
+v.clear();
+if (v.isEmpty()) System.out.println("Vector is clear");
+}
+}
+=========================
+//lastIndexof() import java.util.*; class vector10
+{
+public static void main(String[] arg)
+{
+Vector v = new Vector(); v.add(1);
+v.add(2); v.add("Java"); v.add("for beginers"); v.add(4);
+System.out.println("last occurance of 2 is: " + v.lastIndexOf(2));
+}
+}
+==========================
+//REMOVE
+import java.util.*; class vector11
+{
+public static void main(String[] arg)
+{
+Vector v = new Vector(); v.add(1);
+v.add(2); v.add("Java"); v.add("for beginers"); v.add(4);
+v.remove(1);
+System.out.println("after removal: " + v);
+}
+}
+================================
+//equals() method import java.util.*; class vector12
+{
+public static void main(String[] arg)
+{
+Vector v = new Vector();
+
+v.add(1);
+v.add(2); v.add("Java"); v.add("forBegineers"); v.add(4);
+Vector v_2nd = new Vector(); v_2nd.add(1);
+v_2nd.add(2); v_2nd.add("Java"); v_2nd.add("forBegineers"); v_2nd.add(4);
+if (v.equals(v_2nd))
+System.out.println("both vectors are equal");
+}
+}
+===========================
+//removeElement() import java.util.*; class vector13
+{
+public static void main(String[] arg)
+{
+Vector vec = new Vector(7); vec.add(1);
+vec.add(2);
+vec.add(3);
+vec.add(4);
+vec.add(5);
+vec.add(6);
+vec.add(7); vec.removeElement(5);
+System.out.println("Vector after removal: " + vec);
+}
+}
+=======================
+//capacity() method import java.util.*; class vector14
+{
+public static void main(String[] arg)
+{
+Vector vec = new Vector(7); vec.add(1);
+vec.add(2);
+vec.add(3);
+vec.add(4);
+vec.add(5);
+vec.add(6);
+vec.add(7);
+System.out.println("Capacity of vector: " +
+vec.capacity());
+}
+}
