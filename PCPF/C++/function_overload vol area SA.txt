@@ -1,0 +1,62 @@
+#include<iostream>
+#include<cmath>
+
+class Shape {
+public:
+    Shape() {}
+
+    virtual double calculateArea() {
+        return 0.0; // Default implementation for shapes without area
+    }
+
+    virtual double calculateVolume() {
+        return 0.0; // Default implementation for shapes without volume
+    }
+
+    virtual double calculateSurfaceArea() {
+        return 0.0; // Default implementation for shapes without surface area
+    }
+};
+
+class Rectangle : public Shape {
+private:
+    double length;
+    double width;
+
+public:
+    Rectangle(double l, double w) : length(l), width(w) {}
+
+    double calculateArea() override {
+        return length * width;
+    }
+};
+
+class Cylinder : public Shape {
+private:
+    double radius;
+    double height;
+
+public:
+    Cylinder(double r, double h) : radius(r), height(h) {}
+
+    double calculateVolume() override {
+        return M_PI * pow(radius, 2) * height;
+    }
+
+    double calculateSurfaceArea() override {
+        return 2 * M_PI * radius * (radius + height);
+    }
+};
+
+int main() {
+    // Calculate area of a rectangle
+    Rectangle rectangle(5.0, 3.0);
+    std::cout << "Area of the rectangle: " << rectangle.calculateArea() << std::endl;
+
+    // Calculate volume and surface area of a cylinder
+    Cylinder cylinder(2.0, 4.0);
+    std::cout << "Volume of the cylinder: " << cylinder.calculateVolume() << std::endl;
+    std::cout << "Surface area of the cylinder: " << cylinder.calculateSurfaceArea() << std::endl;
+
+    return 0;
+}

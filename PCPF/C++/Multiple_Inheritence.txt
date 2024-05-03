@@ -1,0 +1,52 @@
+#include <iostream>
+#include <string>
+
+// Base class representing basic shapes
+class Shape {
+public:
+    Shape() {}
+    virtual ~Shape() {}
+
+    virtual void draw() const {
+        std::cout << "Drawing a shape" << std::endl;
+    }
+};
+
+// Base class representing colors
+class Color {
+public:
+    Color() {}
+    virtual ~Color() {}
+
+    virtual void setColor(const std::string& col) {
+        color = col;
+    }
+
+    virtual std::string getColor() const {
+        return color;
+    }
+
+private:
+    std::string color;
+};
+
+// Derived class using multiple inheritance
+class ColoredShape : public Shape, public Color {
+public:
+    ColoredShape() {}
+
+    // Overriding draw to include color information
+    void draw() const override {
+        std::cout << "Drawing a " << getColor() << " colored shape" << std::endl;
+    }
+};
+
+int main() {
+    ColoredShape coloredShape;
+
+    // Set color and draw the colored shape
+    coloredShape.setColor("Blue");
+    coloredShape.draw();
+
+    return 0;
+}

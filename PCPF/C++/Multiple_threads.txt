@@ -1,0 +1,27 @@
+#include <iostream>
+#include <thread>
+#include <vector>
+
+// Function to perform a task (example task: printing numbers from start to end)
+void printNumbers(int start, int end) {
+    for (int i = start; i <= end; ++i) {
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+}
+
+int main() {
+    // Number range for two tasks
+    int range1_start = 1, range1_end = 5;
+    int range2_start = 6, range2_end = 10;
+
+    // Create threads for each task
+    std::thread thread1(printNumbers, range1_start, range1_end);
+    std::thread thread2(printNumbers, range2_start, range2_end);
+
+    // Wait for both threads to finish
+    thread1.join();
+    thread2.join();
+
+    return 0;
+}

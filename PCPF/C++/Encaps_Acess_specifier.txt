@@ -1,0 +1,34 @@
+#include <iostream>
+
+class BakeryShop {
+private:
+    int total;  // Private member to store the total earnings
+
+public:
+    // Constructor to initialize the total earnings
+    BakeryShop() : total(0) {}
+
+    // Public function to add the price of a cake to the total earnings
+    void Add(int price) {
+        total += price;
+    }
+
+    // Public function to get the total earnings
+    int getTotalEarning() const {
+        return total;
+    }
+};
+
+int main() {
+    BakeryShop bakery;
+
+    // Adding earnings for three types of cakes
+    bakery.Add(50);  // Cake 1
+    bakery.Add(30);  // Cake 2
+    bakery.Add(40);  // Cake 3
+
+    // Displaying the total earnings
+    std::cout << "Total Earnings: $" << bakery.getTotalEarning() << std::endl;
+
+    return 0;
+}
