@@ -1,0 +1,14 @@
+simple_interest :-
+    write('Enter the principal amount: '),
+    read(Principal),
+    write('Enter the rate of interest: '),
+    read(Rate),
+    write('Enter the time (in years): '),
+    read(Time),
+    
+    Interest is (Principal * Rate * Time) / 100,
+    
+    format('Simple Interest: ~w\n', [Interest]).
+
+% Example usage:
+% ?- simple_interest.

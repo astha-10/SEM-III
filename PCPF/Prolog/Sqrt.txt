@@ -1,0 +1,19 @@
+% Base case: square root of an empty list is an empty list
+sqrt_elements([], []).
+
+% Case for even numbers
+sqrt_elements([X | Rest], [SqrtX | SqrtRest]) :-
+    0 is X mod 2,           % Check if X is even
+    SqrtX is sqrt(X),       % Compute the square root of X
+    sqrt_elements(Rest, SqrtRest).
+
+% Case for odd numbers
+sqrt_elements([X | Rest], [X | SqrtRest]) :-
+    1 is X mod 2,           % Check if X is odd
+    sqrt_elements(Rest, SqrtRest).
+
+% Example usage:
+% sqrt_elements([1, 4, 9, 16], SquareRoots).
+
+
+?-sqrt_elements([1, 4, 9, 16], SquareRoots).

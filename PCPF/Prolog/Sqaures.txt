@@ -1,0 +1,19 @@
+% Base case: square of an empty list is an empty list
+square_elements([], []).
+
+% Case for even numbers
+square_elements([X | Rest], [SquareX | SquareRest]) :-
+    0 is X mod 2,           % Check if X is even
+    SquareX is X * X,       % Compute the square of X
+    square_elements(Rest, SquareRest).
+
+% Case for odd numbers
+square_elements([X | Rest], [X | SquareRest]) :-
+    1 is X mod 2,           % Check if X is odd
+    square_elements(Rest, SquareRest).
+
+% Example usage:
+% square_elements([1, 2, 3, 4, 5], Squares).
+
+
+?-square_elements([1, 2, 3, 4, 5], Squares).

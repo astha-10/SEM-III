@@ -1,0 +1,14 @@
+% Predicate to check if X is a member of the list
+is_member(X, [X | _]).
+is_member(X, [_ | Rest]) :- is_member(X, Rest).
+
+% Predicate to calculate the length of the list
+list_length([], 0).
+list_length([_ | Rest], Length) :- list_length(Rest, RestLength), Length is RestLength + 1.
+
+% Example usage:
+% ?- is_member(3, [1, 2, 3, 4]).
+% true.
+
+% ?- list_length([a, b, c, d], Length).
+% Length = 4.

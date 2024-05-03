@@ -1,0 +1,15 @@
+% Base case: cube of an empty list is an empty list
+cube_elements([], []).
+
+% Case for even numbers
+cube_elements([X | Rest], [CubeX | CubeRest]) :-
+    0 is X mod 2,          % Check if X is even
+    CubeX is X * X * X,    % Compute the cube of X
+    cube_elements(Rest, CubeRest).
+
+% Case for odd numbers
+cube_elements([X | Rest], [X | CubeRest]) :-
+    1 is X mod 2,          % Check if X is odd
+    cube_elements(Rest, CubeRest).
+
+?-cube_elements([1, 2, 3, 4], Cubes).

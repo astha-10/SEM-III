@@ -1,0 +1,22 @@
+calculate_profit_loss(CostPrice, SellingPrice, Percentage, Type) :-
+    ProfitLoss is SellingPrice - CostPrice,
+    Percentage is (ProfitLoss / CostPrice) * 100,
+    (ProfitLoss >= 0 ->
+        Type = 'Profit'
+    ; 
+        Type = 'Loss'
+    ).
+
+main :-
+    write('Enter Cost Price: '),
+    read(CostPrice),
+    write('Enter Selling Price: '),
+    read(SellingPrice),
+    
+    calculate_profit_loss(CostPrice, SellingPrice, Percentage, Type),
+    
+    format('Profit/Loss: ~w%\n', [Percentage]),
+    format('Type: ~w\n', [Type]).
+
+% Example usage:
+% ?- main.

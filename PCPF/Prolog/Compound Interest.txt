@@ -1,0 +1,23 @@
+compound_interest :-
+    write('Enter Principal Amount: '),
+    read(Principal),
+
+    write('Enter Rate of Interest (in percentage): '),
+    read(Rate),
+
+    write('Enter Time (in years): '),
+    read(Time),
+
+    write('Enter Number of Times Interest Compounded per Year: '),
+    read(CompoundsPerYear),
+
+    RatePerPeriod is Rate / 100 / CompoundsPerYear,
+    TotalCompounds is CompoundsPerYear * Time,
+    Amount is Principal * (1 + RatePerPeriod) ** TotalCompounds,
+
+    CompoundInterest is Amount - Principal,
+
+    format('Compound Interest: ~w\n', [CompoundInterest]).
+
+% Example usage:
+% ?- compound_interest.
