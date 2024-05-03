@@ -1,0 +1,77 @@
+import java.util.Scanner;
+
+class Shape {
+    public double calculateArea() {
+        return 0.0; // Default implementation for shapes without area
+    }
+
+    public double calculateVolume() {
+        return 0.0; // Default implementation for shapes without volume
+    }
+
+    public double calculateSurfaceArea() {
+        return 0.0; // Default implementation for shapes without surface area
+    }
+}
+
+class Rectangle extends Shape {
+    private double length;
+    private double width;
+
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    @Override
+    public double calculateArea() {
+        return length * width;
+    }
+}
+
+class Cylinder extends Shape {
+    private double radius;
+    private double height;
+
+    public Cylinder(double radius, double height) {
+        this.radius = radius;
+        this.height = height;
+    }
+
+    @Override
+    public double calculateVolume() {
+        return Math.PI * Math.pow(radius, 2) * height;
+    }
+
+    @Override
+    public double calculateSurfaceArea() {
+        return 2 * Math.PI * radius * (radius + height);
+    }
+}
+
+public class ShapeCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Calculate area of a rectangle
+        System.out.println("Enter the length of the rectangle:");
+        double rectLength = scanner.nextDouble();
+
+        System.out.println("Enter the width of the rectangle:");
+        double rectWidth = scanner.nextDouble();
+
+        Rectangle rectangle = new Rectangle(rectLength, rectWidth);
+        System.out.println("Area of the rectangle: " + rectangle.calculateArea());
+
+        // Calculate volume and surface area of a cylinder
+        System.out.println("\nEnter the radius of the cylinder:");
+        double cylRadius = scanner.nextDouble();
+
+        System.out.println("Enter the height of the cylinder:");
+        double cylHeight = scanner.nextDouble();
+
+        Cylinder cylinder = new Cylinder(cylRadius, cylHeight);
+        System.out.println("Volume of the cylinder: " + cylinder.calculateVolume());
+        System.out.println("Surface area of the cylinder: " + cylinder.calculateSurfaceArea());
+    }
+}

@@ -1,0 +1,93 @@
+import java.util.Scanner;
+
+// Base class representing a generic shape
+class Shape {
+    protected double volume;
+    protected double area;
+    protected double surfaceArea;
+
+    public Shape() {
+        this.volume = 0.0;
+        this.area = 0.0;
+        this.surfaceArea = 0.0;
+    }
+
+    public void displayResults() {
+        System.out.println("Volume: " + volume);
+        System.out.println("Area: " + area);
+        System.out.println("Surface Area: " + surfaceArea);
+    }
+}
+
+// Derived class representing a sphere
+class Sphere extends Shape {
+    private double radius;
+
+    public Sphere(double radius) {
+        this.radius = radius;
+        calculateVolume();
+        calculateSurfaceArea();
+    }
+
+    private void calculateVolume() {
+        volume = (4.0 / 3.0) * Math.PI * Math.pow(radius, 3);
+    }
+
+    private void calculateSurfaceArea() {
+        surfaceArea = 4.0 * Math.PI * Math.pow(radius, 2);
+    }
+}
+
+// Derived class representing a rectangle
+class Rectangle extends Shape {
+    private double length;
+    private double width;
+
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+        calculateArea();
+        calculateSurfaceArea();
+    }
+
+    private void calculateArea() {
+        area = length * width;
+    }
+
+    private void calculateSurfaceArea() {
+        surfaceArea = 2.0 * (length + width);
+    }
+}
+
+public class ShapeCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Select a shape:");
+        System.out.println("1. Sphere");
+        System.out.println("2. Rectangle");
+
+        int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1:
+                System.out.println("Enter the radius of the sphere:");
+                double sphereRadius = scanner.nextDouble();
+                Sphere sphere = new Sphere(sphereRadius);
+                sphere.displayResults();
+                break;
+
+            case 2:
+                System.out.println("Enter the length of the rectangle:");
+                double rectangleLength = scanner.nextDouble();
+                System.out.println("Enter the width of the rectangle:");
+                double rectangleWidth = scanner.nextDouble();
+                Rectangle rectangle = new Rectangle(rectangleLength, rectangleWidth);
+                rectangle.displayResults();
+                break;
+
+            default:
+                System.out.println("Invalid choice.");
+        }
+    }
+}

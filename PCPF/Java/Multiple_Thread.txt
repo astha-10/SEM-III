@@ -1,0 +1,46 @@
+class Task implements Runnable {
+    private int start;
+    private int end;
+
+    public Task(int start, int end) {
+        this.start = start;
+        this.end = end;
+    }
+
+    // Function to perform a task (example task: printing numbers from start to end)
+    public void printNumbers() {
+        for (int i = start; i <= end; i++) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+
+    @Override
+    public void run() {
+        printNumbers();
+    }
+}
+
+public class MultiThreadExample {
+    public static void main(String[] args) {
+        // Number range for two tasks
+        int range1_start = 1, range1_end = 5;
+        int range2_start = 6, range2_end = 10;
+
+        // Create threads for each task
+        Thread thread1 = new Thread(new Task(range1_start, range1_end));
+        Thread thread2 = new Thread(new Task(range2_start, range2_end));
+
+        // Start the threads
+        thread1.start();
+        thread2.start();
+
+        // Wait for both threads to finish
+        try {
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}

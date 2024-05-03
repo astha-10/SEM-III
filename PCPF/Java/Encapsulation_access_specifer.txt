@@ -1,0 +1,30 @@
+public class BakeryShop {
+    private int total;  // Private member to store the total earnings
+
+    // Constructor to initialize the total earnings
+    public BakeryShop() {
+        total = 0;
+    }
+
+    // Public method to add the price of a cake to the total earnings
+    public void add(int price) {
+        total += price;
+    }
+
+    // Public method to get the total earnings
+    public int getTotalEarning() {
+        return total;
+    }
+
+    public static void main(String[] args) {
+        BakeryShop bakery = new BakeryShop();
+
+        // Adding earnings for three types of cakes
+        bakery.add(50);  // Cake 1
+        bakery.add(30);  // Cake 2
+        bakery.add(40);  // Cake 3
+
+        // Displaying the total earnings
+        System.out.println("Total Earnings: $" + bakery.getTotalEarning());
+    }
+}
