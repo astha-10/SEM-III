@@ -1,0 +1,24 @@
+-- Function to calculate Simple Interest
+simpleInterest :: Double -> Double -> Double -> Double
+simpleInterest principal rate time = principal * rate * time / 100.0
+
+-- Function to calculate Compound Interest
+compoundInterest :: Double -> Double -> Double -> Double
+compoundInterest principal rate time = principal * (1 + rate / 100.0) ** time - principal
+
+main :: IO ()
+main = do
+  putStrLn "Enter the principal amount:"
+  principal <- readLn :: IO Double
+
+  putStrLn "Enter the rate of interest:"
+  rate <- readLn :: IO Double
+
+  putStrLn "Enter the time (in years):"
+  time <- readLn :: IO Double
+
+  let si = simpleInterest principal rate time
+  let ci = compoundInterest principal rate time
+
+  putStrLn $ "Simple Interest: " ++ show si
+  putStrLn $ "Compound Interest: " ++ show ci

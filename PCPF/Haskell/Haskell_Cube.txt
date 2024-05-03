@@ -1,0 +1,18 @@
+cubeFilter :: (Int -> Bool) -> [Int] -> [Int]
+cubeFilter condition list = map (\x -> if condition x then x^3 else x) list
+
+main :: IO ()
+main = do
+  putStrLn "Enter a list of integers (space-separated):"
+  input <- getLine
+  let numbers = map read (words input) :: [Int]
+
+  putStrLn "Enter the condition (even or odd):"
+  condition <- getLine
+
+  let result = case condition of
+                 "even" -> cubeFilter even numbers
+                 "odd"  -> cubeFilter odd numbers
+                 _      -> error "Invalid condition. Please enter 'even' or 'odd'."
+
+  putStrLn $ "Result: " ++ show result

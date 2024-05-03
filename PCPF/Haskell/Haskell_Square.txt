@@ -1,0 +1,18 @@
+squareFilter :: (Int -> Bool) -> [Int] -> [Int]
+squareFilter condition list = map (\x -> if condition x then x*x else x) list
+
+main :: IO ()
+main = do
+  putStrLn "Enter a list of integers (space-separated):"
+  input <- getLine
+  let numbers = map read (words input) :: [Int]
+
+  putStrLn "Enter the condition (even or odd):"
+  condition <- getLine
+
+  let result = case condition of
+                 "even" -> squareFilter even numbers
+                 "odd"  -> squareFilter odd numbers
+                 _      -> error "Invalid condition. Please enter 'even' or 'odd'."
+
+  putStrLn $ "Result: " ++ show result

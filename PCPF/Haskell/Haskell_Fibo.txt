@@ -1,0 +1,17 @@
+-- Function to generate the nth Fibonacci number
+fibonacci :: Int -> Integer
+fibonacci 0 = 0
+fibonacci 1 = 1
+fibonacci n = fibonacci (n - 1) + fibonacci (n - 2)
+
+-- Function to generate the first n Fibonacci numbers
+fibonacciSeries :: Int -> [Integer]
+fibonacciSeries n = map fibonacci [0..n-1]
+
+main :: IO ()
+main = do
+  putStrLn "Enter the number of Fibonacci numbers to generate:"
+  input <- getLine
+  let n = read input :: Int
+
+  putStrLn $ "Fibonacci series up to the " ++ show n ++ "th number: " ++ show (fibonacciSeries n)

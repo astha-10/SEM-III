@@ -1,0 +1,24 @@
+-- Function to check if an element is a member of a list
+isMember :: Eq a => a -> [a] -> Bool
+isMember _ [] = False
+isMember x (y:ys)
+  | x == y    = True
+  | otherwise = isMember x ys
+
+-- Function to calculate the length of a list
+calculateLength :: [a] -> Int
+calculateLength [] = 0
+calculateLength (_:xs) = 1 + calculateLength xs
+
+main :: IO ()
+main = do
+  putStrLn "Enter a list of elements (space-separated):"
+  input <- getLine
+  let elements = words input
+
+  putStrLn "Enter an element to check its membership:"
+  memberElement <- getLine
+
+  putStrLn $ "Is '" ++ memberElement ++ "' a member of the list? " ++ show (isMember memberElement elements)
+
+  putStrLn $ "Length of the list: " ++ show (calculateLength elements)
