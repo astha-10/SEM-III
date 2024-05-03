@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+#define MAX_NODES 100
+
+// Function to initialize the adjacency matrix
+void initializeMatrix(int adjacencyMatrix[MAX_NODES][MAX_NODES], int numNodes) {
+    for (int i = 0; i < numNodes; i++) {
+        for (int j = 0; j < numNodes; j++) {
+            adjacencyMatrix[i][j] = 0; // Initializing all elements to 0
+        }
+    }
+}
+
+// Function to add an edge to the graph
+void addEdge(int adjacencyMatrix[MAX_NODES][MAX_NODES], int startNode, int endNode) {
+    adjacencyMatrix[startNode][endNode] = 1;
+    adjacencyMatrix[endNode][startNode] = 1; // Assuming an undirected graph
+}
+
+// Function to display the adjacency matrix
+void displayMatrix(int adjacencyMatrix[MAX_NODES][MAX_NODES], int numNodes) {
+    printf("Adjacency Matrix:\n");
+    for (int i = 0; i < numNodes; i++) {
+        for (int j = 0; j < numNodes; j++) {
+            printf("%d ", adjacencyMatrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int numNodes, numEdges;
+    
+    printf("Enter the number of nodes in the graph: ");
+    scanf("%d", &numNodes);
+
+    int adjacencyMatrix[MAX_NODES][MAX_NODES];
+
+    initializeMatrix(adjacencyMatrix, numNodes);
+
+    printf("Enter the number of edges in the graph: ");
+    scanf("%d", &numEdges);
+
+    printf("Enter the edges (startNode endNode):\n");
+    for (int i = 0; i < numEdges; i++) {
+        int startNode, endNode;
+        scanf("%d %d", &startNode, &endNode);
+        addEdge(adjacencyMatrix, startNode, endNode);
+    }
+
+    displayMatrix(adjacencyMatrix, numNodes);
+
+    return 0;
+}

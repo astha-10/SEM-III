@@ -1,0 +1,94 @@
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <string.h> 
+// Define the maximum number of buckets in the hash table 
+#define TABLE_SIZE 100 
+// Define a structure for a key-value pair 
+typedef struct KeyValuePair 
+{ 
+    char key[100]; 
+    int value; 
+    struct KeyValuePair* next; 
+} 
+KeyValuePair; 
+// Define a hash table structure 
+typedef struct HashTable 
+{ 
+    KeyValuePair* table[TABLE_SIZE]; 
+} 
+HashTable; 
+// Hash function to convert a string into an index 
+unsigned int hash(char* key) 
+{ 
+    unsigned int hash = 0; 
+    while (*key) 
+    {
+        hash = (hash * 31) + *key; 
+        key++; 
+    } 
+    return hash % TABLE_SIZE; 
+} 
+// Function to create a new key-value pair 
+KeyValuePair* createKeyValuePair(char* key, int value) 
+{ 
+    KeyValuePair* newPair = (KeyValuePair*)malloc(sizeof(KeyValuePair)); 
+    if (newPair) 
+    { 
+        strcpy(newPair->key, key); 
+        newPair->value = value; 
+        newPair->next = NULL; 
+    } 
+    return newPair; 
+} 
+// Function to insert a key-value pair into the hash table 
+void insert(HashTable* ht, char* key, int value) 
+{ 
+    unsigned int index = hash(key); 
+    KeyValuePair* newPair = createKeyValuePair(key, value); 
+    if (newPair) 
+    { 
+        if (ht->table[index] == NULL) 
+        { 
+            ht->table[index] = newPair; 
+        } 
+        else 
+        { 
+            // Collision resolution using chaining (linked list) 
+            KeyValuePair* current = ht->table[index]; 
+            while (current->next != NULL) 
+            { 
+                current = current->next; 
+            } 
+            current->next = newPair; 
+        } 
+    } 
+} 
+// Function to retrieve a value associated with a key 
+int get(HashTable* ht, char* key) 
+{
+    unsigned int index = hash(key); 
+    KeyValuePair* current = ht->table[index]; 
+    while (current != NULL) 
+    { 
+        if (strcmp(current->key, key) == 0) 
+        { 
+            return current->value; 
+        } 
+        current = current->next; 
+    } 
+    return -1;
+    // Key not found 
+} 
+int main() 
+{ 
+    HashTable ht; 
+    memset(ht.table, 0, sizeof(ht.table)); 
+    insert(&ht, "John", 25); 
+    insert(&ht, "Alice", 30); 
+    insert(&ht, "Bob", 22); 
+    printf("John's age: %d\n", get(&ht, "John")); 
+    printf("Alice's age: %d\n", get(&ht, "Alice"));
+    printf("Bob's age: %d\n", get(&ht, "Bob")); 
+    printf("Charlie's age: %d\n", get(&ht, "Charlie")); 
+    return 0;
+}

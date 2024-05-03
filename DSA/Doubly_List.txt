@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure for doubly linked list
+struct Node {
+    int data;
+    struct Node* prev;
+    struct Node* next;
+};
+
+// Doubly linked list structure
+struct DoublyLinkedList {
+    struct Node* head;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->prev = NULL;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to insert at the end of the doubly linked list
+void insertEnd(struct DoublyLinkedList* list, int data) {
+    struct Node* newNode = createNode(data);
+
+    if (list->head == NULL) {
+        list->head = newNode;
+    } else {
+        struct Node* current = list->head;
+        while (current->next != NULL) {
+            current = current->next;
+        }
+        current->next = newNode;
+        newNode->prev = current;
+    }
+}
+
+// Function to display the doubly linked list
+void display(struct DoublyLinkedList* list) {
+    struct Node* current = list->head;
+    while (current != NULL) {
+        printf("%d <-> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+// Main function for testing
+int main() {
+    struct DoublyLinkedList doublyLinkedList;
+    int num, choice;
+
+    do {
+        printf("\n1. Insert at end\n");
+        printf("2. Display\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter the number to insert: ");
+                scanf("%d", &num);
+                insertEnd(&doublyLinkedList, num);
+                break;
+            case 2:
+                printf("Doubly Linked List: ");
+                display(&doublyLinkedList);
+                break;
+            case 3:
+                printf("Exiting the program.\n");
+                break;
+            default:
+                printf("Invalid choice. Please enter a valid option.\n");
+        }
+    } while (choice != 3);
+
+    return 0;
+}

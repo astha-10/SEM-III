@@ -1,0 +1,77 @@
+#include <stdio.h>
+
+// Function to perform Linear Search
+int linearSearch(int arr[], int n, int key) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == key) {
+            return i;  // Return the index where the key is found
+        }
+    }
+    return -1;  // Return -1 if the key is not found
+}
+
+// Function to perform Binary Search (array must be sorted)
+int binarySearch(int arr[], int low, int high, int key) {
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if (arr[mid] == key) {
+            return mid;  // Return the index where the key is found
+        }
+
+        if (arr[mid] < key) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+
+    return -1;  // Return -1 if the key is not found
+}
+
+// Function to print an array
+void printArray(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+// Main function for testing
+int main() {
+    int n, key;
+
+    // Get the size of the array from the user
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    // Get sorted array elements from the user
+    printf("Enter the sorted elements:\n");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Get the search key from the user
+    printf("Enter the search key: ");
+    scanf("%d", &key);
+
+    // Perform Linear Search
+    int linearResult = linearSearch(arr, n, key);
+    if (linearResult != -1) {
+        printf("Linear Search: Element %d found at index %d.\n", key, linearResult);
+    } else {
+        printf("Linear Search: Element %d not found.\n", key);
+    }
+
+    // Perform Binary Search
+    int binaryResult = binarySearch(arr, 0, n - 1, key);
+    if (binaryResult != -1) {
+        printf("Binary Search: Element %d found at index %d.\n", key, binaryResult);
+    } else {
+        printf("Binary Search: Element %d not found.\n", key);
+    }
+
+    return 0;
+}

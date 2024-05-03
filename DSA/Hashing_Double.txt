@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define SIZE 10
+
+// Structure to represent a hash table entry
+struct HashEntry {
+    int key;
+    int value;
+    int occupied;  // Flag to indicate if the slot is occupied
+};
+
+// Function to initialize the hash table
+void initializeHashTable(struct HashEntry hashTable[], int size) {
+    for (int i = 0; i < size; i++) {
+        hashTable[i].occupied = 0;
+    }
+}
+
+// Function to calculate the first hash index
+int firstHash(int key, int size) {
+    return key % size;
+}
+
+// Function to calculate the second hash index
+int secondHash(int key, int size) {
+    // Use a prime number smaller than the size for better distribution
+    return 7 - (key % 7);
+}
+
+// Function to calculate the double hash index
+int doubleHash(int key, int attempt, int size) {
+    return (firstHash(key, size) + attempt * secondHash(key, size)) % size;
+}
+
+// Function to insert a key-value pair into the hash table using double hashing
+void insertDoubleHash(struct HashEntry hashTable[], int key, int value, int size) {
+    int index = firstHash(key, size);
+    int attempt = 0;
+
+    // Double hashing until an empty slot is found
+    while (hashTable[index].occupied) {
+        attempt++;
+        index = doubleHash(key, attempt, size);
+    }
+
+    // Insert the key-value pair into the hash table
+    hashTable[index].key = key;
+    hashTable[index].value = value;
+    hashTable[index].occupied = 1;
+
+    printf("Key %d with value %d inserted at index %d\n", key, value, index);
+}
+
+// Function to display the contents of the hash table
+void displayHashTable(struct HashEntry hashTable[], int size) {
+    printf("Hash Table Contents:\n");
+    for (int i = 0; i < size; i++) {
+        if (hashTable[i].occupied) {
+            printf("Index %d: Key %d, Value %d\n", i, hashTable[i].key, hashTable[i].value);
+        } else {
+            printf("Index %d: Empty\n", i);
+        }
+    }
+}
+
+// Main function for testing
+int main() {
+    struct HashEntry hashTable[SIZE];
+    initializeHashTable(hashTable, SIZE);
+
+    insertDoubleHash(hashTable, 5, 50, SIZE);
+    insertDoubleHash(hashTable, 15, 150, SIZE);
+    insertDoubleHash(hashTable, 25, 250, SIZE);
+    insertDoubleHash(hashTable, 35, 350, SIZE);
+    insertDoubleHash(hashTable, 45, 450, SIZE);
+
+    displayHashTable(hashTable, SIZE);
+
+    return 0;
+}

@@ -1,0 +1,126 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_VERTICES 6
+
+// Queue structure for BFS
+struct Queue {
+    int items[MAX_VERTICES];
+    int front;
+    int rear;
+};
+
+// Function to initialize an empty queue
+void initializeQueue(struct Queue* q) {
+    q->front = -1;
+    q->rear = -1;
+}
+
+// Function to check if the queue is empty
+int isEmpty(struct Queue* q) {
+    return q->front == -1;
+}
+
+// Function to enqueue a vertex into the queue
+void enqueue(struct Queue* q, int value) {
+    if (q->rear == MAX_VERTICES - 1) {
+        printf("Queue is full. Cannot enqueue.\n");
+    } else {
+        if (q->front == -1) {
+            q->front = 0;
+        }
+        q->rear++;
+        q->items[q->rear] = value;
+    }
+}
+
+// Function to dequeue a vertex from the queue
+int dequeue(struct Queue* q) {
+    int item;
+    if (isEmpty(q)) {
+        printf("Queue is empty. Cannot dequeue.\n");
+        return -1;
+    } else {
+        item = q->items[q->front];
+        q->front++;
+        if (q->front > q->rear) {
+            q->front = q->rear = -1;
+        }
+        return item;
+    }
+}
+
+// Graph structure using adjacency matrix
+struct Graph {
+    int numVertices;
+    int adjacencyMatrix[MAX_VERTICES][MAX_VERTICES];
+    int visited[MAX_VERTICES];
+};
+
+// Function to create a graph with a predefined number of vertices
+struct Graph* createGraph() {
+    struct Graph* graph = (struct Graph*)malloc(sizeof(struct Graph));
+    graph->numVertices = MAX_VERTICES;
+
+    // Initialize the adjacency matrix with zeros
+    for (int i = 0; i < MAX_VERTICES; i++) {
+        for (int j = 0; j < MAX_VERTICES; j++) {
+            graph->adjacencyMatrix[i][j] = 0;
+        }
+        graph->visited[i] = 0;
+    }
+
+    return graph;
+}
+
+// Function to add an edge to the graph
+void addEdge(struct Graph* graph, int src, int dest) {
+    // Adding edge from src to dest
+    graph->adjacencyMatrix[src][dest] = 1;
+    // Adding edge from dest to src (for undirected graph)
+    graph->adjacencyMatrix[dest][src] = 1;
+}
+
+// Function to perform BFS traversal of the graph starting from a given vertex
+void BFS(struct Graph* graph, int startVertex) {
+    struct Queue q;
+    initializeQueue(&q);
+
+    // Mark the start vertex as visited and enqueue it
+    graph->visited[startVertex] = 1;
+    enqueue(&q, startVertex);
+
+    while (!isEmpty(&q)) {
+        // Dequeue a vertex from the queue and print it
+        int currentVertex = dequeue(&q);
+        printf("%d ", currentVertex);
+
+        // Visit all unvisited adjacent vertices of the dequeued vertex
+        for (int i = 0; i < graph->numVertices; i++) {
+            if (graph->adjacencyMatrix[currentVertex][i] == 1 && !graph->visited[i]) {
+                graph->visited[i] = 1;
+                enqueue(&q, i);
+            }
+        }
+    }
+}
+
+// Main function for testing
+int main() {
+    struct Graph* graph = createGraph();
+
+    // Adding edges to create a sample graph
+    addEdge(graph, 0, 1);
+    addEdge(graph, 0, 2);
+    addEdge(graph, 1, 3);
+    addEdge(graph, 1, 4);
+    addEdge(graph, 2, 5);
+
+    int startVertex = 0;
+    printf("BFS Traversal starting from vertex %d: ", startVertex);
+    BFS(graph, startVertex);
+
+    free(graph);
+
+    return 0;
+}

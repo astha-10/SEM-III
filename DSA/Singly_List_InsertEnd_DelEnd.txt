@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Linked list structure
+struct LinkedList {
+    struct Node* head;
+};
+
+// Function to insert at the end of the linked list
+void insertEnd(struct LinkedList* list, int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+
+    if (list->head == NULL) {
+        list->head = newNode;
+    } else {
+        struct Node* current = list->head;
+        while (current->next != NULL) {
+            current = current->next;
+        }
+        current->next = newNode;
+    }
+}
+
+// Function to delete from the end of the linked list
+void deleteEnd(struct LinkedList* list) {
+    if (list->head == NULL) {
+        printf("List is empty. Nothing to delete.\n");
+    } else if (list->head->next == NULL) {
+        free(list->head);
+        list->head = NULL;
+    } else {
+        struct Node* current = list->head;
+        struct Node* previous = NULL;
+
+        while (current->next != NULL) {
+            previous = current;
+            current = current->next;
+        }
+
+        free(current);
+        previous->next = NULL;
+    }
+}
+
+// Function to display the linked list
+void display(struct LinkedList* list) {
+    struct Node* current = list->head;
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+// Main function for testing
+int main() {
+    struct LinkedList linkedList;
+    int num, choice;
+
+    do {
+        printf("\n1. Insert at end\n");
+        printf("2. Delete from end\n");
+        printf("3. Display\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter the number to insert: ");
+                scanf("%d", &num);
+                insertEnd(&linkedList, num);
+                break;
+            case 2:
+                deleteEnd(&linkedList);
+                break;
+            case 3:
+                printf("Linked List: ");
+                display(&linkedList);
+                break;
+            case 4:
+                printf("Exiting the program.\n");
+                break;
+            default:
+                printf("Invalid choice. Please enter a valid option.\n");
+        }
+    } while (choice != 4);
+
+    return 0;
+}
